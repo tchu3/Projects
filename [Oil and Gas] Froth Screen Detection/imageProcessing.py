@@ -27,14 +27,15 @@ from PIL import ImageFilter
 from PIL import ImageEnhance
 ########################
 
+mainDirectory = os.getcwd()
 
 ##### LOAD IMAGE & VIDEO #####
 
 r'''
-# Open mp4 video
-imgUpsetVideo = cv2.VideoCapture(r'C:\Users\Tommy Chu\Desktop\Python\Froth Screens\1# 249-XT-0033 MRM-Froth-ScreenA@2020-04-27T060959.510Z.mkv')
+# Open mp4 video - this code is used to generate the frames
+imgUpsetVideo = cv2.VideoCapture(mainDirectory + r'\1# 249-XT-0033 MRM-Froth-ScreenA@2020-04-27T060959.510Z.mkv')
 
-path = r'C:\Users\Tommy Chu\Desktop\Python\Froth Screens\frames'
+path = mainDirectory + r'\Frames'
 frameRate = imgUpsetVideo.get(5)
 count = 0
 
@@ -53,8 +54,8 @@ imgUpsetVideo.release()
 
 # Image array gives the value of each pixel in the image
 # imgSK = imageio.imread('x175-1030x816.jpg')
-imgClean = Image.open(r'E:\(2) Machine Learning Froth Screens\249-XT-0032 MRM-Froth-ScreenA_04_13_2020 11_56_42 PM.jpg')
-imgUpset = Image.open(r'E:\(2) Machine Learning Froth Screens\249-XT-0032 MRM-Froth-ScreenA_04_13_2020 11_56_42 PM.jpg')
+imgClean = Image.open(mainDirectory + r'\Images\249-XT-0032 MRM-Froth-ScreenA_04_13_2020 11_56_42 PM.jpg')
+imgUpset = Image.open(mainDirectory + r'\Images\249-XT-0032 MRM-Froth-ScreenA_04_13_2020 11_56_42 PM.jpg')
 
 # Store the original image size for later preprocessing
 width, height = imgClean.size
@@ -183,22 +184,9 @@ imgUpsetBW = imgUpsetBW.enhance(1.3)
 imgUpsetBW = ImageEnhance.Brightness(imgUpsetBW)
 imgUpsetBW = imgUpsetBW.enhance(0.7)
 
-'''
-imgCleanBW = imgClean.convert('L')
-imgCleanBW = ImageEnhance.Contrast(imgCleanBW)
-imgCleanBW = imgCleanBW.enhance(2.0)
-#imgCleanBW = ImageEnhance.Brightness(imgCleanBW)
-#imgCleanBW = imgCleanBW.enhance(1.3)
-'''
 
 ##### DYNAMIC CROPPER #####
 
-'''
-# Find contours of image
-contours, hierarchy = cv2.findContours(imgUpsetBW, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-#contours[x] draws a specific contour that it finds
-cv2.drawContours(imgUpsetBW, contours[219], -1, (255, 255, 255), 5)
-'''
 img = cv2.cvtColor(np.array(imgUpsetBW), cv2.COLOR_RGB2BGR)
 img2 = img.copy()
 
@@ -217,29 +205,14 @@ cv2.imwrite('EdgeImage.jpg', edgeImage)
 
 # Use Hughes Transform to get lines
 imageLines = cv2.HoughLinesP(edgeImage, 1, np.pi/180, threshold = 1, minLineLength = 40, maxLineGap = 5)
-'''
-cropBoxStart = processLines(imageLines, imgUpset)
-for index, line in enumerate(cropBoxStart):
-    x1,y1,x2,y2 = line#[0]
-    print(str(index) + ': ' + str(x1) + ' ' + str(y1) + ' ' + str(x2) + ' ' + str(y2)) 
-    cv2.line(img, (x1,y1), (x2,y2), (0,255,0), 2)
 
-'''
 cropBoxStart = processLines(imageLines, imgUpset)
 startPoint = (int(cropBoxStart[0]),int(cropBoxStart[1]))
 endPoint = (int(cropBoxStart[0] + width*0.1), int(cropBoxStart[1] - height*0.2))
 cv2.rectangle(img, startPoint, endPoint, (0,255,0), 2) 
 
-
 cv2.imwrite('LinedImage.jpg', img)
 
-'''
-# Using a contour algorithm to find the contours of an image
-contours, hierarchy = cv2.findContours(edgeImage, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-contours = sorted(contours, key=len)
-cv2.drawContours(img2, contours[-1], -1, (0,255,0), 3)
-cv2.imwrite('ContourImage.jpg', img2)
-'''
 
 
     

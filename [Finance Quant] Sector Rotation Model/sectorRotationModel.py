@@ -6,6 +6,7 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import shap
+import os
 from sklearn.preprocessing import StandardScaler
 from sklearn import linear_model
 from sklearn.metrics import r2_score
@@ -23,7 +24,7 @@ outputScaler = StandardScaler()
 
 # Import raw data
 workbookNames = ["\[RAW DATA] Factset.xlsx","\[RAW DATA] FRED.xlsx","\[RAW DATA] EIA.xlsx","\[RAW DATA] RECESSION INDICATOR.xls","\[RAW DATA] OECD.xlsx"]
-mainDirectory = r"C:\Users\Tommy Chu\Dropbox\(x) Portfolio Monitoring\3. Sector Rotation Model"
+mainDirectory = os.getcwd()
 consolidatedData = pd.DataFrame()
 predictionDF = []
 actualDF = []
@@ -128,7 +129,6 @@ featureList = [
                 'MORTGAGE30US',
                 'Consumer Loans: Credit Cards and Other Revolving Plans, All Commercial Banks',
                 'Consumer Confidence Index', 
-                # 'Business Confidence Index',
                 'JTSJOL',
                 'Month'
 ]
@@ -136,7 +136,7 @@ featureList = [
 outputList = [
 #               'XLE-US' + ' - %s Month Return' % (returnWindow), 
 #               'XLI-US' + ' - %s Month Return' % (returnWindow), 
-#               # 'XLC-US' + ' - %s Month Return' % (returnWindow), 
+#               'XLC-US' + ' - %s Month Return' % (returnWindow), 
 #               'XLP-US' + ' - %s Month Return' % (returnWindow), 
 #               'XLV-US' + ' - %s Month Return' % (returnWindow), 
 #               'XLU-US' + ' - %s Month Return' % (returnWindow), 
@@ -144,13 +144,12 @@ outputList = [
 #               'XLY-US' + ' - %s Month Return' % (returnWindow), 
 #               'XLF-US' + ' - %s Month Return' % (returnWindow), 
 #               'XLB-US' + ' - %s Month Return' % (returnWindow), 
-# #              'XLRE-US' + ' - %s Month Return' % (returnWindow), 
+#               'XLRE-US' + ' - %s Month Return' % (returnWindow), 
 #               'R.2000' + ' - %s Month Return' % (returnWindow), 
 #               'SP50' + ' - %s Month Return' % (returnWindow), 
 #               'IVE-US' + ' - %s Month Return' % (returnWindow), 
 #               'IVW-US' + ' - %s Month Return' % (returnWindow), 
-#               'Recession Index'
-              'Business Confidence Index'
+              'Recession Index'
 ]
 
 dateList = ['Date']

@@ -1,4 +1,5 @@
 
+
 <!-- OBJECTIVE -->
 ## OBJECTIVE
 
@@ -111,26 +112,29 @@ A few functions are built in the body of the code and can be commented in/out de
 
 **Model Training**:
 - LASSO Regression - toggle on/off - simple linear regression that penalizes insignificant features
-- Neural Network - created a recurrent neural network that recursively passes features from the last time step into the current time step. Simple neural network was trailed as well as LSTM RNN
+- Neural Network - created a recurrent neural network that recursively passes features from the last time step into the current time step. Multiple variants of a neural network were used such as vanilla neural network, RNN, and LSTM
 - 80/20 training/test data set split 
-- 150 epochs initially used, training loss appears to have troughed at 150 - additional epochs caused overfitting of the mdoel
+- Model currently trained on 150 epochs, training loss appears to have troughed at 150 - additional epochs caused overfitting of the model
 
 **Analysis**:
-- SHAP Analysis - SHAP analysis used to back out significance of features, SHAP is agnostic of model, given the size of the data set using the full training set in the SHAP analysis was not computationally heavy.
+- SHAP Analysis - SHAP analysis was used to back out significance of features, SHAP is agnostic of the model, given the size of the data set SHAP was run over the entire training set and was not computationally burdensome.
 
 
 ## INITIAL RESULTS
 
  LASSO regression suggests that most salient variables that affect the recession index are: S&P 500 Volume, Average Weekly Hours, ISM Manufacturing Index, Credit Spreads, US Retail Sales, and the Business Confidence Index. These features are vetted using first principles to avoid spurious correlations.
 
- 1. S&P 500 Volume (+10.08 Coeffcient) - suggests that when recessions are proceeded by a capitulation (aka sell-off) in the stocks
- 2. ISM Manufacturing Index (-3.98 Coefficient) - suggests that when manufacturing declines there is a higher probability of a recession, consistent with first princples
+ 1. S&P 500 Volume (+10.08 Coefficient) - suggests that when recessions are proceeded by a capitulation (aka sell-off) in the stocks
+ 2. ISM Manufacturing Index (-3.98 Coefficient) - suggests that when manufacturing declines there is a higher probability of a recession, consistent with first principles
  3. Credit Spreads (-3.76 Coefficient) - suggests that as credit spreads widen (more negative) there is a positive correlation to the recession index. This is consistent with what happened in the great recession. Oddly, credit spreads are narrow right now, despite the other indicators suggesting a recession this goes against prior recessions.
  4. US Retail Sales (+1.3 Coefficient) - Data set is first differenced, therefore positive values are M/M increases. First principles suggests that as sales increase there should be a negative correlation with the recession index. This needs to be evaluated further.
  5. Business Confidence Index (-11.59 Coefficient) - Survey based data that polls the sentiment of businesses. This has the strongest correlation, suggests that when business confidence drops there is an incoming recession (since business confidence ripples down to manufacturing, lay offs, etc...) consistent with first principles.
 
 <!-- ROADMAP -->
 ## ROADMAP
+Project is currently functional, out-of-sample accuracy can be improved. Below is a running list of action items for the project.
+- Investigate correlation sign mismatch on  US Retail Sales for LASSO regression model
+- Explore additional feature engineering, such as Recursive Feature Elimination (RFE) outlined in Karatas and Hirsa (2021) to determine most relevant features to include in neural network as opposed to a simple correlation analysis
 
 <!-- CONTACT -->
 ## Contact

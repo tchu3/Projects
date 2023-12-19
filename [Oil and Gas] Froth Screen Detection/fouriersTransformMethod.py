@@ -30,6 +30,8 @@ from PIL import ImageFilter
 from PIL import ImageEnhance
 ########################
 
+mainDirectory = os.getcwd()
+
 #text_file = open("upsetFreq.txt", "w", newline='')
 #writer = csv.writer(text_file, delimiter = '\t')
 
@@ -37,11 +39,11 @@ from PIL import ImageEnhance
 ##### LOAD VIDEO #####
 
 def getFrames():
-    # https://www.analyticsvidhya.com/blog/2018/09/deep-learning-video-classification-python/
     # Open mkv video - this video is a 5 FPS video
-    frothVideo = cv2.VideoCapture(r'E:\Froth Screen Videos\[UPSET] 06-03-2020 0306AM.mkv')
+    fileName = "[UPSET] 06-03-2020 0306AM" # Naming relates to the file being loaded
+    frothVideo = cv2.VideoCapture(mainDirectory + r'\\' + fileName + '.mkv') 
     # Path to save the frames
-    path = r'E:\[UPSET 06-03-2020 0306AM] Frames 15fps'
+    path = mainDirectory + r'\\' + fileName
     
     # Intialize frame rate for 
     frameRate = frothVideo.get(cv2.CAP_PROP_FPS)

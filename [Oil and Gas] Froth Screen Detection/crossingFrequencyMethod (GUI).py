@@ -9,8 +9,11 @@ Created on Tue Jan  5 16:05:43 2021
 import tkinter as tk
 from PIL import Image, ImageTk
 import cv2
-
+import os
 import numpy as np
+
+mainDirectory = os.getcwd()
+
 frameStack = []
 
 class frothWindow:
@@ -21,7 +24,7 @@ class frothWindow:
         # Initialize buttons and labels
         self.title=tk.Label(window, text='Froth Screen Detection Tool', font = ('Arial Narrow', 16, 'bold'))
         
-        self.vid = videoCapture(r'\\cnrl.com\cnrl\users\tommych\Downloads\[UPSET] 07-10-2020 0817PM.mkv')
+        self.vid = videoCapture(mainDirectory + r'\[UPSET] 07-10-2020 0817PM.mkv') # Temporarily loading mkv file of froth screen for demo purposes
         
         # Create a canvas that can fit the above video source size
         self.canvas = tk.Canvas(window, width = self.vid.width, height = self.vid.height)

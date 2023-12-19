@@ -50,7 +50,7 @@ def getPrices(url):
 
 # Initialize list of links for the various commodity contracts
 HH = getPrices('https://www.cmegroup.com/CmeWS/mvc/Quotes/Future/444/G?quoteCodes=null&_=1560171518204')
-#WTI = getPrices('https://www.cmegroup.com/CmeWS/mvc/Quotes/Future/4707/G?quoteCodes=null&_=1560171518204')
+WTI = getPrices('https://www.cmegroup.com/CmeWS/mvc/Quotes/Future/4707/G?quoteCodes=null&_=1560171518204')
 WTI = getPrices('https://www.cmegroup.com/CmeWS/mvc/Quotes/Future/425/G?quoteCodes=null&_=1560171518204')
 WCS = getPrices('https://www.cmegroup.com/CmeWS/mvc/Quotes/Future/8289/G?quoteCodes=null&_=1560171518204')
 MSW = getPrices('https://www.cmegroup.com/CmeWS/mvc/Quotes/Future/8290/G?quoteCodes=null&_=1560171518204')
@@ -79,8 +79,8 @@ JKM['Date'] = date.today()
 FX['Date'] = date.today()
 
 # Load output file to save scraped data
-book = load_workbook(r'C:\Users\Tommy Chu\Dropbox\(3) Python\Commodity Price Scrapes\priceOutputCME.xlsx')
-writer = pd.ExcelWriter(r'C:\Users\Tommy Chu\Dropbox\(3) Python\Commodity Price Scrapes\priceOutputCME.xlsx', engine='openpyxl')
+book = load_workbook(r'priceOutputCME.xlsx')
+writer = pd.ExcelWriter(r'priceOutputCME.xlsx', engine='openpyxl')
 writer.book = book
 writer.sheets = {ws.title: ws for ws in book.worksheets}
 
