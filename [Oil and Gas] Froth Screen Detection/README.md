@@ -1,6 +1,7 @@
 
 
 
+
 <!-- OBJECTIVE -->
 ## OBJECTIVE
 
@@ -19,10 +20,13 @@ Process engineering team kept a log of upset conditions in the plant. Over multi
 1) Brighten and contrast - increase contrast and reduce brightness for optimum image processing
 2) Greyscale - Convert image to greyscale for simplistic processing (no additional value is lost by converting to greyscale)
 3) Canny Algorithm - Run the canny algorithm over image - blur is applied to reduce noise in the image, the Sobel filters are convolved in the x,y direction to determine gradients in the image and detect an edge
+
 ![Post-processed Canny Image](https://lh3.googleusercontent.com/pw/ABLVV85In3blyagpgjP1VMXZv19RMvYh7EMbCwLKyTkCkNPE2TC8JSEmLYsVc8ws5ld_yVgHLRahXAbe6RXLbOMHXXA33fVlTMIjIg4kmvsECXhsYmIyxvC93z3TZq0o9yd_JkqHQXn9C6x2KqL0O5XSCNCG=w352-h240-s-no-gm)
 4) Houghs Transform - transforms (x,y) coordinates to polar coordinates (theta, r), intersections in the (theta, r) plane are indications of a line. Hyperparameters are minimum number of points, minimum line length, and line gap. Given a list of lines found in the image, use lines with "target" slopes to identify location of the 4 main edges of a box.
+
 ![Post-processed Hughes Transform](https://lh3.googleusercontent.com/pw/ABLVV86cWy2OgKYzXz1OQiaaCkx2AqfVZ5-L9NBkF_PC8AZYBHt0m8X5KhPR5-pF-Hbt8YBsb4N5rsFzEZE9UE_YRE6Q11h6dlwf_MkLt1I2N_G9BfWgniGyy263PlXv-40w27uJu6YGgePd6joG6x0-8Im7=w1118-h400-s-no-gm)
 3) Dynamically Crop Image - getCroppedBox function - after identifying the top of the box, draw an (100,85) dimension rectangle in the bottom left corner for evaluation in the model
+
 ![Detection of Cropped Box](https://lh3.googleusercontent.com/pw/ABLVV85bnUiYZn82CV-LbmCVisHn4wW_6_UMY97_vZfRJrUbKu31wXYHJO1Uv5-OYmtQ01VKdzTY4HP735YbHxmGEdymE5jj-VyllJeJTE1D_GCYPkd-WUFh6fIip38SgZvf84ZH7elCCA397othq4XCrtRQ=w583-h358-s-no-gm)
 
 **Crossing Frequency Algorithm**
@@ -37,9 +41,11 @@ The second method utilized leveraged Fourier's Transform. The intent was to comp
 1) Convert cropped frame to a numpy array
 2) Cropped box will initially be sized as a 100x85 array (each entry in the array reflects a pixel)
 3) Apply 1D Fourier Transform on 'x' frames the 3d array will have dimensions (100,85,x)
-![Cropped images over 9 frames](https://lh3.googleusercontent.com/pw/ABLVV85-4y3H3E_xzDjcnRQsKmNCBwQWcXfLeXP-Rfkc5LsPe2AYGdUrjvYzAg5QrsiJncCBz7jevM3uquO7CXEPGOYKgrlI4Ww11m_YDZ3KuDCxLlhn-WBRbRQ7HucKqSGzIW0GUCkRcZxqm957gudFzMmfCEyokt6HHrKzYBOwN37ZR-l84Qr5JhN0dffL-mIn39lySnvNjwNH3NEasv4Y-Qe2nDLDTAQ1anpsbkDUXb1hS7xUG9AyP0JuRg0WIgHFupjF0vLv7_2eXwMy16bvfNGduTqL8I9wb45-aFNzWIBc-OMewEPF4tmsn3ZJ8XW0COhgxDMj7kT0O3B3jFC3qhFmlRF45rOye2TqYb5IP7WNdu-A2fpKe-aVGq5wKxyVz82J31faDl6-_kVojcurpaDQh4-stUrN6f-3eH2swU9RFuboXw35rDVO-6QK-Y95tS_bZlBjHz5lZ-O72UkDnupUGOvys-UYlNAFX88lUGb7XDl42NB-4xlboDO6x5H8f0kGiEV3YeViNVxK5vnaXRA_4X09YqEeJ9MU4hhRMAyRlrpUA_afGv2zIBOjjK7cPgfESYeUluanoZJEm1krVolw1P8YFIVBSm6VBkSJfAetEE9K9AzEQE-69Sq5H6_rY81sXz_Wsc0WKuHuIrI-sL89SSTVdfD0Z7S3hCPdTDewgo8ITAoSKdu03pt9KcomAsydBIl1oSrRfE1iyduiVB08bNs7BdiUAVdL81b4-pC8kAk1rXzun1TX06dRCZgiXyhZHAtGDoCDMVQCZVuh5RBK7f7Gq7PTqVQWG_NfVtgyQJlKbA2y2yYlWCXuFci5zV2P4-39QJpEiC_2IX_DkrmPs3VwiLRkX81YQbqdZ-jP-YvLbNcvAdqPW1V9b5CIlTiU-AUl-P8cc-AiocucO_e5xA2KVIHHb_TZdboClg=w1285-h607-s-no-gm?authuser=0)
+
+![Cropped images over 9 frames](https://lh3.googleusercontent.com/pw/ABLVV85vq5Zz6ziIf-olofUZSULjYePNHiCf0LP0sq9866DFCmarXzRCtG7kubfEAfCPv0-CCbvavU8wVbg6T_u42-CVf95omDmrjCJXf5PUYF1Nsyh1BbSBwXhQaouGMtddwqT7UHphdHho45se3XYPj33M=w1285-h607-s-no-gm)
 4) Fourier Transform will result in a series of sinusoids, data analysis will be run to determine what combination of amplitudes and frequencies are indicative of upset conditions
-![Fourier Transform sinusoids, left represents clean conditions, right represents upset conditions](https://lh3.googleusercontent.com/pw/ABLVV84MIDSk7o9VQnWUuEPQRvGkmlB-n2rxURMoDx0d_v7Q2SdVI2bKi6273ir6wDs0zCXqaKGG2iHvD57S2ghIoyR7n-uIGOzl6anr6-QJPqhA46chvG5Mj1FqpLjI3b_ZFkQDMQIMIwuhMnGKjbuLl0l4esy8arOrlb5byyC9ngUkINDs19zqL_oZrhn14GYS5qPsbdxpyIR38KjHtNYRXy-HehxBTVmoapEf81YoPCWM0G4EB1tCqXFvtqvBZwyhtySf99l7n-AuhppX6rLTdbiy5flhBcbytNSAruE1oQAJDViBEd-eTXlhH8NcJSVx2-YH9T4uOk-c1NnnbAZlR-rYUpM-EBUQtcTQ9wZP7EBqGxGs66CpuIDOemdN8n4cBFk2gSV-kG_wTKjI3-mVv8w1x_GiGnmE_GHHUaylIh-BqrjSRhMnZFptE20comyUSr8ts19F4C6CBWvrSOQN1R8Q8TsoGqbLT7kNU7n73eVVeAI9TLi9SRf1Dm2636hfnDySPhB-rayjT82QHfObs_xMZuLIDcMFAs_SUqlvC6C_c1V71WvxtdH2ubt_EcthLy-4PPZ4ribIrkf59KduhnqKgM5CW__xsWeO0-VoP_U0gq1EV_kDS_B92-Ome_r610ePOtPkNs2uiINRfhUMByTqSPksUd6REZVCUhHQ-j8FkMopQUSq3XCM8GE9dgd06jlRY7bFLRuRzT5oiMn2gcRcoNwnY3iOeYnzIO2pZw1gQFCCI2nEyaOqFUxphpZHBDqbi0WUVE1eWOlx1b4xH3kVXXbDPs7aFjdibY6Ro5rV9pbGW-BT_iODXWSmgsj6IlLWnM1INywO3d9t_G_LQqHYojkmEMPR7waWWCcAppkagNul2ItGXVekPVktkHqPtfVZh_bgYQCfX9YQLEXkZlOaWFSoo0AzqLXsbppPag=w1199-h338-s-no-gm?authuser=0)
+
+![Fourier Transform sinusoids, left represents clean conditions, right represents upset conditions](https://lh3.googleusercontent.com/pw/ABLVV871q5j2ezxBCSINf8ZRraGPuo6TpLiRY9n91oWEn-cpBOfxQbRU5LGld0_epMgZM1GHa88r-PspdYyjJNORAO0Sirn6S2GOVxwv4wDalaIDbKnB7SmNHTeJYqFcVMRAPJhoYGVGt2oKzOO2BeCT5ze-=w1199-h338-s-no-gm)
 
 <!-- USAGE EXAMPLES -->
 ## Usage
