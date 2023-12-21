@@ -27,7 +27,7 @@ This method utilizes the clusters and draws two lines. One for the froth phase a
 - Slope of the middlings phase
 - Paired mean difference (bulk density differences of the froth and middlings)
 - Intersect of the two lines
-![enter image description here](https://lh3.googleusercontent.com/pw/ABLVV87mq_zXMpWCDXuQCJA1MSapGZa6x2jXG0kSNN7JfIvT8IUHFBRXl_ObOEVSz4n2dHUOMbVgfIc4eN75ZS-1rGzFFRdUmUmjRFl8ioOtajI9kegzEy-_epQkSOPnFNYn0GkJGBav4n2FvodRukgfbtvD=w640-h193-s-no-gm)![Example of the slope method](https://lh3.googleusercontent.com/pw/ABLVV84cZIe4P1-SbPkGFcZSJO9Ho6AJ4AG7oD0ZTujHgG6pZhiBe9eQJ991xKe2DQ7FyTZQ8Nr9qwm2W0XinjWLTrBacIudVfRkKtqEAD5Ga_IIlLPQfmiV-0g-4_ymUBCOh0p53HDZ0vVwOKF5kKk9RHfg=w460-h630-s-no-gm)
+![Example of the slope method](https://lh3.googleusercontent.com/pw/ABLVV84cZIe4P1-SbPkGFcZSJO9Ho6AJ4AG7oD0ZTujHgG6pZhiBe9eQJ991xKe2DQ7FyTZQ8Nr9qwm2W0XinjWLTrBacIudVfRkKtqEAD5Ga_IIlLPQfmiV-0g-4_ymUBCOh0p53HDZ0vVwOKF5kKk9RHfg=w460-h630-s-no-gm)
 
 2) Sigmoid Method
 The TracerCo profile is fit to a sigmoid. Conventionally sigmoids are used in machine learning algorithms as an activiation function, in this case the raw shape of the function is used. 
